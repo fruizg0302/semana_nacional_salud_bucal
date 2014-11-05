@@ -93,10 +93,7 @@ GEM
       json (~> 1.4)
     responders (1.1.1)
       railties (>= 3.2, < 4.2)
-<<<<<<< HEAD
-=======
     rolify (3.4.1)
->>>>>>> 8ec7cd1f0c9b4021acbf420a096258489ce5d1cc
     ruby-ole (1.2.11.7)
     sass (3.2.19)
     sass-rails (4.0.4)
@@ -154,10 +151,6 @@ DEPENDENCIES
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   spring
-<<<<<<< HEAD
-  sqlite3
-=======
->>>>>>> 8ec7cd1f0c9b4021acbf420a096258489ce5d1cc
   to_xls (~> 1.5.3)
   turbolinks
   uglifier (>= 1.3.0)
