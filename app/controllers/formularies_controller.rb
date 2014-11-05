@@ -1,11 +1,28 @@
 class FormulariesController < ApplicationController
   def index
+    if   can? :capture_formulary, @user
+      @formularios = Formulary.jurisdictional_results(current_user.jurisdiction_id).order.page(params[:page]).per(5)
+      render partial: 'jurisdictional_results' # renders app/views/formularies/index/_product.html.erb
+    elsif can? :view_state_results, @user
+      @formularios = Formulario.resultados_estatales(current_user.efederativa_id)
+      render partial: 'state_results'
+    elsif can? :view_national_results, @user
+      @formularios = Formulario.resultados_nacionales
+    else
+      @formularios = Formulario.formularios_jurisdiccionales(current_user.efederativa_id, current_user.jurisdiction_id).order.page(params[:page]).per(5)
+    end
+    #render partial: 'product' # renders app/views/products/_product.html.haml
   end
 
   def show
   end
 
   def new
+    @formulary = Formulary.new
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @formulario }
+    end
   end
 
   def edit

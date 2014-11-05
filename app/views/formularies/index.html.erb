@@ -1,7 +1,9 @@
-<% if can? capture_formulary, @user %>
-  <%= render 'view_metas_estatales'%>
-<% elsif can? :cenaprece_view, @user %>
-  <%= render 'view_metas_nacionales'%>
+<% if can? :capture_formulary, @user %>
+  <%= render 'capture_formulary'%>
+<% elsif can? :view_state_results, @user %>
+  <%= render 'state_results'%>
+<% elsif can? :view_institutional_results, @user %>
+  <%= render 'capture_institutional_formularies'%>
 <% else %>
-  <%= render 'view_metas_jurisdiccionales'%>
+  <%= render 'generic_partial' %>
 <% end %>
