@@ -1,2 +1,7 @@
-<h1>Formularies#index</h1>
-<p>Find me in app/views/formularies/index.html.erb</p>
+<% if can? capture_formulary, @user %>
+  <%= render 'view_metas_estatales'%>
+<% elsif can? :cenaprece_view, @user %>
+  <%= render 'view_metas_nacionales'%>
+<% else %>
+  <%= render 'view_metas_jurisdiccionales'%>
+<% end %>
