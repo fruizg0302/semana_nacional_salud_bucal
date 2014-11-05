@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  jurisdiction_anterior_id: 1
+  state_id: 1
+  municipio_id: 1
+  jurisdiction: MyString
+
+two:
+  jurisdiction_anterior_id: 1
+  state_id: 1
+  municipio_id: 1
+  jurisdiction: MyString
