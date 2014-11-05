@@ -1,0 +1,162 @@
+<%   edo =  State.where("id = ?", current_user.state_id) %>
+<h2>Metas a nivel estatal: <%= edo.to_a.map(&:entidadFederativa).join("") %> </h2>
+
+<table class="table">
+  <tr>
+    <th>Cod01</th>
+    <th>Cod02</th>
+    <th>Ape01</th>
+    <th>Ape02</th>
+    <th>Ape03</th>
+    <th>Ape04</th>
+    <th>Ape05</th>
+    <th>Ape06</th>
+    <th>Ape07</th>
+    <th>Api01</th>
+    <th>Api02</th>
+    <th>Api03</th>
+    <th>Api04</th>
+    <th>Ssb01</th>
+    <th>Cao01</th>
+    <th>Cao02</th>
+    <th>Cao03</th>
+    <th>Cao04</th>
+    <th>Cao05</th>
+    <th>Cao06</th>
+    <th>Cao07</th>
+    <th>Cao08</th>
+    <th>Cao09</th>
+    <th>Cao10</th>
+    <th>Cao11</th>
+    <th>Cao12</th>
+    <th>Tit01</th>
+    <th>Uni01</th>
+    <th>Uni02</th>
+    <th>Uni03</th>
+    <th>Ben01</th>
+    <th>Ben02</th>
+    <th>Per01</th>
+    <th>Per02</th>
+  </tr>
+
+  <tr>
+    <td><%= @formularios.at(0)%></td>
+    <td><%= @formularios.at(1)%></td>
+    <td><%= @formularios.at(2)%></td>
+    <td><%= @formularios.at(3)%></td>
+    <td><%= @formularios.at(4)%></td>
+    <td><%= @formularios.at(5)%></td>
+    <td><%= @formularios.at(6)%></td>
+    <td><%= @formularios.at(7)%></td>
+    <td><%= @formularios.at(8)%></td>
+    <td><%= @formularios.at(9)%></td>
+    <td><%= @formularios.at(10)%></td>
+    <td><%= @formularios.at(11)%></td>
+    <td><%= @formularios.at(12)%></td>
+    <td><%= @formularios.at(13)%></td>
+    <td><%= @formularios.at(14)%></td>
+    <td><%= @formularios.at(15)%></td>
+    <td><%= @formularios.at(16)%></td>
+    <td><%= @formularios.at(17)%></td>
+    <td><%= @formularios.at(18)%></td>
+    <td><%= @formularios.at(19)%></td>
+    <td><%= @formularios.at(20)%></td>
+    <td><%= @formularios.at(21)%></td>
+    <td><%= @formularios.at(22)%></td>
+    <td><%= @formularios.at(23)%></td>
+    <td><%= @formularios.at(24)%></td>
+    <td><%= @formularios.at(25)%></td>
+    <td><%= @formularios.at(26)%></td>
+    <td><%= @formularios.at(27)%></td>
+    <td><%= @formularios.at(28)%></td>
+    <td><%= @formularios.at(29)%></td>
+    <td><%= @formularios.at(30)%></td>
+    <td><%= @formularios.at(31)%></td>
+    <td><%= @formularios.at(32)%></td>
+    <td><%= @formularios.at(33)%></td>
+
+  </tr>
+</table>
+
+<% detalle =  Formulario.where("State_id = ?", current_user.State_id) %>
+<% detalle.each do |detalle| %>
+<h2>Jurisdicción: <%= Jurisdiction.where("id = ?", detalle.jurisdiction_id).to_a.map(&:jurisdiction).join("") %> </h2>
+<table class="table">
+  <tr>
+    <th>Cod01</th>
+    <th>Cod02</th>
+    <th>Ape01</th>
+    <th>Ape02</th>
+    <th>Ape03</th>
+    <th>Ape04</th>
+    <th>Ape05</th>
+    <th>Ape06</th>
+    <th>Ape07</th>
+    <th>Api01</th>
+    <th>Api02</th>
+    <th>Api03</th>
+    <th>Api04</th>
+    <th>Ssb01</th>
+    <th>Cao01</th>
+    <th>Cao02</th>
+    <th>Cao03</th>
+    <th>Cao04</th>
+    <th>Cao05</th>
+    <th>Cao06</th>
+    <th>Cao07</th>
+    <th>Cao08</th>
+    <th>Cao09</th>
+    <th>Cao10</th>
+    <th>Cao11</th>
+    <th>Cao12</th>
+    <th>Tit01</th>
+    <th>Uni01</th>
+    <th>Uni02</th>
+    <th>Uni03</th>
+    <th>Ben01</th>
+    <th>Ben02</th>
+    <th>Per01</th>
+    <th>Per02</th>
+  </tr>
+
+  <tr>
+    <td><%= detalle.responsable_llenado %></td>
+    <td><%= detalle.fecha %></td>
+    <td><%= detalle.cod01 %></td>
+    <td><%= detalle.cod02 %></td>
+    <td><%= detalle.ape01 %></td>
+    <td><%= detalle.ape02 %></td>
+    <td><%= detalle.ape03 %></td>
+    <td><%= detalle.ape04 %></td>
+    <td><%= detalle.ape05 %></td>
+    <td><%= detalle.ape06 %></td>
+    <td><%= detalle.ape07 %></td>
+    <td><%= detalle.api01 %></td>
+    <td><%= detalle.api02 %></td>
+    <td><%= detalle.api03 %></td>
+    <td><%= detalle.api04 %></td>
+    <td><%= detalle.ssb01 %></td>
+    <td><%= detalle.cao01 %></td>
+    <td><%= detalle.cao02 %></td>
+    <td><%= detalle.cao03 %></td>
+    <td><%= detalle.cao04 %></td>
+    <td><%= detalle.cao05 %></td>
+    <td><%= detalle.cao06 %></td>
+    <td><%= detalle.cao07 %></td>
+    <td><%= detalle.cao08 %></td>
+    <td><%= detalle.cao09 %></td>
+    <td><%= detalle.cao10 %></td>
+    <td><%= detalle.cao11 %></td>
+    <td><%= detalle.cao12 %></td>
+    <td><%= detalle.tit01 %></td>
+    <td><%= detalle.uni01 %></td>
+    <td><%= detalle.uni02 %></td>
+    <td><%= detalle.uni03 %></td>
+    <td><%= detalle.ben01 %></td>
+    <td><%= detalle.ben02 %></td>
+    <td><%= detalle.per01 %></td>
+    <td><%= detalle.per02 %></td>
+
+  </tr>
+</table>
+<% end %>
