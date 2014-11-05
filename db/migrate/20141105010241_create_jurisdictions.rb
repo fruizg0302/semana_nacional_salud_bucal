@@ -1,3 +1,4 @@
+=begin
 class CreateJurisdictions < ActiveRecord::Migration
   def change
     create_table :jurisdictions do |t|
@@ -10,3 +11,4 @@ class CreateJurisdictions < ActiveRecord::Migration
     end
   end
 end
+=end

@@ -11,7 +11,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141105010241) do
+ActiveRecord::Schema.define(version: 20141105023451) do
+
+  create_table "formularies", force: true do |t|
+    t.string   "nombre_unidad"
+    t.string   "responsable_llenado"
+    t.date     "fecha"
+    t.integer  "cod01"
+    t.integer  "cod02"
+    t.integer  "ape01"
+    t.integer  "ape02"
+    t.integer  "ape03"
+    t.integer  "ape04"
+    t.integer  "ape05"
+    t.integer  "ape06"
+    t.integer  "ape07"
+    t.integer  "api01"
+    t.integer  "api02"
+    t.integer  "api03"
+    t.integer  "api04"
+    t.integer  "ssb01"
+    t.integer  "cao01"
+    t.integer  "cao02"
+    t.integer  "cao03"
+    t.integer  "cao04"
+    t.integer  "cao05"
+    t.integer  "cao06"
+    t.integer  "cao07"
+    t.integer  "cao08"
+    t.integer  "cao09"
+    t.integer  "cao10"
+    t.integer  "cao11"
+    t.integer  "cao12"
+    t.integer  "tit01"
+    t.integer  "uni01"
+    t.integer  "uni02"
+    t.integer  "uni03"
+    t.integer  "ben01"
+    t.integer  "ben02"
+    t.integer  "per01"
+    t.integer  "per02"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "jurisdictions", force: true do |t|
     t.integer  "jurisdiction_anterior_id"
@@ -22,10 +65,50 @@ ActiveRecord::Schema.define(version: 20141105010241) do
     t.datetime "updated_at"
   end
 
+  create_table "roles", force: true do |t|
+    t.string   "name"
+    t.integer  "resource_id"
+    t.string   "resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
+  add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+
   create_table "states", force: true do |t|
     t.string   "state_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "users", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "ap_paterno"
+    t.string   "ap_materno"
+    t.integer  "jurisdiction_id"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "users_roles", id: false, force: true do |t|
+    t.integer "user_id"
+    t.integer "role_id"
+  end
+
+  add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
 end

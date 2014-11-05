@@ -1,10 +1,8 @@
-source 'https://rubygems.org'
+  source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -17,6 +15,7 @@ gem 'kaminari', '~> 0.16.1'
 gem 'devise', '~> 3.4.1'
 gem 'cancan', '~> 1.6.10'
 gem 'to_xls', '~> 1.5.3'
+gem 'rolify', '~> 3.4.1'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
