@@ -1,0 +1,417 @@
+<% @current_estado_id = User.select(:efederativa_id).where("id = ?", current_user.id).all%>
+<%= form_for @formulary, :validate => true do |f| %>
+  <% if @formulary.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@formulary.errors.count, "error") %> prohibited this formulario from being saved:</h2>
+
+      <ul>
+      <% @formulary.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span4">
+        <div class="field">
+          <p>Responsable de llenado</p>
+          <%= f.text_field :responsable_llenado, :tabindex => '1' %>
+        </div>
+      </div>
+
+
+      <% if can? :fill_federal, @user %>
+          <div class="span4">
+            <div>
+              <p> <label for="estado_id">Entidad federativa</label>
+                <% @current_estado_name = Efederativa.select("id, state_name") %>
+                <%= f.select :efederativa_id, @current_estado_name.collect{ |e| [e.state_name, e.id] }, :tabindex => '4'%>
+              </p>
+            </div>
+          </div>
+
+       <%else %>
+
+      <div class="span4">
+        <div class= "field">
+          <p>Jurisdicción</p>
+          <% @current_jurisdiction_name = Jurisdiction.select("id, jurisdiction").where("efederativa_id = ? AND id = ?", @current_estado_id.map(&:efederativa_id), current_user.jurisdiction_id).all %>
+          <%= f.select :jurisdiction_id, @current_jurisdiction_name.collect{ |m| [m.jurisdiction, m.id] }%>
+          </div>
+        </div>
+
+
+      <div class="span4">
+        <div>
+          <p> <label for="estado_id">Entidad federativa</label>
+            <% @current_estado_name = Efederativa.select("id, state_name").where("id = ?", @current_estado_id.map(&:efederativa_id)).all %>
+            <%= f.select :efederativa_id, @current_estado_name.collect{ |e| [e.state_name, e.id] }, :tabindex => '4'%>
+          </p>
+        </div>
+      </div>
+      <% end %>
+
+
+    </div>
+
+    <div class="row">
+      <div class="span10">
+        <div class="field">
+          <%= f.label "Fecha de captura" %>
+          <%= f.date_select :fecha, {:use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre','Diciembre']}%>
+        </div>
+      </div>
+    </div>
+ </div>
+
+    <div class="alert alert-info">
+      <strong>Consultas odontológicas</strong>
+
+    </div>
+
+
+
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+
+
+        <div class="span4">
+
+          <div class="field">
+            <p>COD01: Primera Vez</p>
+
+            <%= f.number_field :cod01 %>
+          </div>
+
+
+        </div>
+
+        <div class="span4">
+            <div class="field">
+              <p>COD02: Subsecuente</p>
+              <%= f.number_field :cod02, options = {:min => 1} %>
+            </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="alert alert-info">
+      <strong>Actividades Preventivas:</strong>
+      <p>Intramuros y Extramuros</p>
+    </div>
+
+
+
+
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+
+
+        <div class="span4">
+
+          <div class="field">
+            <p>APE01: Detección de placa bacteriana*</p><br/>
+            <%= f.number_field :ape01 %>
+          </div>
+
+          <div class="field">
+            <p>APE04: Enjuagues de fluoruro de sodios (Autoaplicaciones)*</p>
+            <%= f.number_field :ape04 %>
+          </div>
+
+          <div class="field">
+            <p>APE07: Instrucción de autoexamen de cavidad bucal</p>
+            <%= f.number_field :ape07 %>
+          </div>
+
+        </div>
+
+        <div class="span4">
+          <div class="field">
+            <p>APE02: Instrucción en técnica de cepillado*</p>
+            <%= f.number_field :ape02 %>
+          </div>
+          <div class="field">
+            <p>APE05: Revisión de tejidos bucales*</p>
+            <%= f.number_field :ape05 %>
+          </div>
+        </div>
+
+
+
+        <div class="span4">
+          <div class="field">
+           <p>APE03: Instrucción de uso del hilo dental</p>
+            <%= f.number_field :ape03 %>
+          </div>
+          <div class="field">
+            <p>APE06: Revisión e instrucción de higiene de protésis*</p>
+            <%= f.number_field :ape06 %>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+
+
+    <div class="alert alert-info">
+      <strong>Actividades Preventivas:</strong>
+      <p>Intramuros</p>
+    </div>
+
+
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+
+
+        <div class="span4">
+          <div class="field">
+            <p>API01: Profilaxis </p><br/>
+
+            <%= f.number_field :api01 %>
+          </div>
+          <div class="field">
+            <p>API04: Sellado de fosetas y fisuras </p><br/>
+
+            <%= f.number_field :api04 %>
+          </div>
+
+
+        </div>
+
+        <div class="span4">
+          <div class="field">
+            <p>API02: Odontoxesis </p><br/>
+            <%= f.number_field :api02 %>
+          </div>
+          <div class="field">
+            <p>SSB01: Sesiones sobre Salud Bucal</p><br/>
+            <%= f.number_field :ssb01 %>
+          </div>
+        </div>
+
+
+
+        <div class="span4">
+          <div class="field">
+            <p>API03: Aplicación tópica de fluor</p><br/>
+            <%= f.number_field :api03 %>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+
+    <div class="alert alert-info">
+      <strong>Curativo Asistencial:</strong>
+
+    </div>
+
+
+
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+
+
+        <div class="span4">
+          <div class="field">
+            <p>CAO01: Obturación con Amalgama</p><br/>
+            <%= f.number_field :cao01 %>
+          </div>
+          <div class="field">
+            <p>CAO04: Tratamiento restaurativo atraumático (extramuros)</p><br/>
+            <%= f.number_field :cao04 %>
+          </div>
+          <div class="field">
+            <p>CAO07: Extracciones Permanentes</p><br/>
+            <%= f.number_field :cao07 %>
+          </div>
+          <div class="field">
+            <p>CAO10: Farmacoterapia</p><br/>
+            <%= f.number_field :cao10 %>
+          </div>
+          <div class="field">
+            <p>TIT01: Tratamiento Integral Terminado</p><br/>
+            <%= f.number_field :tit01 %>
+          </div>
+
+
+        </div>
+
+        <div class="span4">
+          <div class="field">
+            <p>CAO02: Obturación con Resina</p><br/>
+            <%= f.number_field :cao02 %>
+          </div>
+          <div class="field">
+            <p>CAO01: Obturación con material temporal</p><br/>
+            <%= f.number_field :cao05 %>
+          </div>
+          <div class="field">
+            <p>CAO08: Terapia Pulpar</p><br/>
+            <%= f.number_field :cao08 %>
+          </div>
+          <div class="field">
+            <p>CAO11: Otras Atenciones</p><br/>
+            <%= f.number_field :cao11 %>
+          </div>
+
+
+        </div>
+
+
+
+        <div class="span4">
+          <div class="field">
+            <p>CAO03: Obturación con ionómetro de vidrio</p><br/>
+            <%= f.number_field :cao03 %>
+          </div>
+          <div class="field">
+            <p>CAO06: Extracciones Temporales</p><br/>
+            <%= f.number_field :cao06 %>
+          </div>
+          <div class="field">
+            <p>CAO09: Cirugía Bucal</p><br/>
+            <%= f.number_field :cao09 %>
+          </div>
+          <div class="field">
+            <p>CAO12: Radiografías</p><br/>
+            <%= f.number_field :cao12 %>
+          </div>
+
+        </div>
+
+
+
+      </div>
+    </div>
+
+
+    <div class="alert alert-info">
+      <strong>Universo:</strong>
+
+    </div>
+
+
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+
+
+        <div class="span4">
+          <div class="field">
+            <p>UNI01: Escuelas</p><br/>
+            <%= f.number_field :uni01 %>
+          </div>
+
+
+        </div>
+
+        <div class="span4">
+          <div class="field">
+           <p>UNI02: Unidades de salud</p><br/>
+            <%= f.number_field :uni02 %>
+          </div>
+        </div>
+
+
+
+        <div class="span4">
+          <div class="field">
+            <p>UNI03: Otros(ferias de salud, plazas, mercados, etc.)</p><br/>
+            <%= f.number_field :uni03 %>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+
+
+    <div class="alert alert-info">
+      <strong>Beneficiados:</strong>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+
+
+        <div class="span4">
+          <div class="field">
+            <p>BEN01: Menores de 20 años</p><br/>
+            <%= f.number_field :ben01 %>
+          </div>
+
+        </div>
+
+        <div class="span4">
+          <div class="field">
+            <p>BEN02: 20 años ó más</p><br/>
+            <%= f.number_field :ben02 %>
+          </div>
+        </div>
+
+
+
+
+      </div>
+    </div>
+
+    <div class="alert alert-info">
+      <strong>Personal Participante:</strong>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+
+
+        <div class="span4">
+          <div class="field">
+            <p>PER01: Personal de salud</p><br/>
+            <%= f.number_field :per01 %>
+          </div>
+
+        </div>
+
+
+        <div class="span4">
+          <div class="field">
+            <p>PER02: Otros</p><br/>
+            <%= f.number_field :per02 %>
+          </div>
+        </div>
+
+
+        <div class="span4">
+          <div class="field">
+            <p>ID de Usuario</p><br/>
+
+
+            <%  @estado_id = User.select(:efederativa_id).where("id = ?", current_user.id).all%>
+            <%= f.number_field :user_id, :value => current_user.id, :readonly => true  %>
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+  <div class="actions">
+    <%= f.submit "Guardar", :confirmation => true %>
+  </div>
+<% end %>

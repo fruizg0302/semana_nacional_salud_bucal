@@ -7,10 +7,13 @@ class Ability
     elsif user.has_role? :jurisdictional
       can :capture_formulary
     elsif user.has_role? :state
-      can :view_state_formularies
+      can :view_state_results
     elsif user.has_role? :institutional
-        can :capture_institutional_formularies
+        can :view_institutional_results
+    elsif user.has_role? :federal
+        can :view_national_results
     else
       can :guest_view
     end
+  end
 end
