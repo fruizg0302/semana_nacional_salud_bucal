@@ -8,9 +8,9 @@ jQuery ->
   $('#user_jurisdiction_id').parent().hide()
   states = $('#user_jurisdiction_id').html()
   console.log(states)
-  $('#user_efederativa_id').change ->
-    efederativa = $('#user_efederativa_id :selected').text()
-    options = $(states).filter("optgroup[label='#{efederativa}']").html()
+  $('#user_id').change ->
+    state_name = $('#user_id :selected').text()
+    options = $(states).filter("optgroup[label='#{state_name}']").html()
     if options
       $('#user_jurisdiction_id').html(options)
       $('#user_jurisdiction_id').parent().show()
