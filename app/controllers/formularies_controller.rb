@@ -1,15 +1,16 @@
 class FormulariesController < ApplicationController
   def index
-    if   can? :capture_formulary, @user
+    if can? :capture_formulary, @user
       @formularios = Formulary.jurisdictional_results(current_user.jurisdiction_id).order.page(params[:page]).per(5)
-      render partial: 'jurisdictional_results' # renders app/views/formularies/index/_product.html.erb
+      render partial: 'index/jurisdictional_results' # renders app/views/formularies/index/_product.html.erb
     elsif can? :view_state_results, @user
-      @formularios = Formulario.resultados_estatales(current_user.efederativa_id)
+      @formularios = Formulario.resultados_estatales(current_user.jurisdiction_id)
       render partial: 'state_results'
     elsif can? :view_national_results, @user
-      @formularios = Formulario.resultados_nacionales
+      #@formularios = Formulary.resultados_nacionales
     else
-      @formularios = Formulario.formularios_jurisdiccionales(current_user.efederativa_id, current_user.jurisdiction_id).order.page(params[:page]).per(5)
+      #@formularios = Formulary.formularios_jurisdiccionales(current_user.jurisdiction_id).order.page(params[:page]).per(5)
+      render partial: 'generic_partial' # renders app/views/products/_product.html.haml
     end
     #render partial: 'product' # renders app/views/products/_product.html.haml
   end

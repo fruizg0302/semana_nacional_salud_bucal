@@ -15,4 +15,5 @@ class Ability
     else
       can :guest_view
     end
+  end
 end
