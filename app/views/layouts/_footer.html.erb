@@ -1,12 +1,13 @@
-<footer class="footer">
+<div class="footer">
   <small>
     <a href="http://cenaprece.salud.gob.mx/">SSA-CENAPRECE</a>
+
   </small>
   <nav>
     <ul>
       <% if user_signed_in? %>
-        <p>Hola <%= current_user.email %>.</p>
+          <p>Hola <%= current_user.email %>.</p>
       <% end %>
     </ul>
   </nav>
-</footer>
+</div>
