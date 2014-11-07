@@ -7,4 +7,9 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) << [:name, :ap_paterno, :ap_materno, :jurisdiction_id  ]
   end
 
+  rescue_from CanCan::AccessDenied do |exception|
+  flash[:error] = "Acceso denegado."
+  redirect_to root_url
+end
+
 end

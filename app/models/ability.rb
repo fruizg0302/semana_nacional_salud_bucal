@@ -4,7 +4,8 @@ class Ability
   def initialize(user)
     user ||= User.new #guest user
     if user.has_role? :admin
-      can :do_all
+      can :manage, User
+      can :manage, Formulary
     elsif user.has_role? :jurisdictional
       can :capture_formulary
       can :manage, Formulary
