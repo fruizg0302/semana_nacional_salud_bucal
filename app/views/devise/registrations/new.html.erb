@@ -4,36 +4,36 @@
   <%= devise_error_messages! %>
   <% @estados_array = State.all %>
   <div><%= f.label "Nombre" %><br />
-  <%= f.text_field :name, :autofocus => true%>
+    <%= f.text_field :name, :autofocus => true%>
   </div>
 
   <div><%= f.label "Apellido Paterno" %><br />
-  <%= f.text_field :ap_paterno%>
+    <%= f.text_field :ap_paterno%>
   </div>
 
   <div><%= f.label "Apellido Materno" %><br />
-  <%= f.text_field :ap_materno%>
+    <%= f.text_field :ap_materno%>
   </div>
 
   <div><%= f.label "Entidad Federativa" %><br />
-  <%= f.collection_select :id,  State.order(:state_name), :id, :state_name, include_blank:true%>
+    <%= f.collection_select :id,  State.order(:state_name), :id, :state_name, include_blank:true%>
   </div>
 
   <div><%= f.label "Jurisdicción sanitaria" %><br />
-  <%= f.grouped_collection_select :jurisdiction_id,  State.order(:state_name), :jurisdictions,
-  :state_name,:id, :jurisdiction, include_blank:true%>
+    <%= f.grouped_collection_select :jurisdiction_id,  State.order(:state_name), :jurisdictions,
+    :state_name,:id, :jurisdiction, include_blank:true%>
   </div>
 
   <div><%= f.label :email %><br />
-  <%= f.email_field :email %>
+    <%= f.email_field :email %>
   </div>
 
   <div><%= f.label :password %><br />
-  <%= f.password_field :password %>
+    <%= f.password_field :password %>
   </div>
 
   <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
   </div>
 
   <div><%= f.submit "Sign up" %></div>

@@ -1,4 +1,5 @@
 class FormulariesController < ApplicationController
+  load_and_authorize_resource
   def index
     if can? :capture_formulary, @user
       @formularios = Formulary.jurisdictional_results(current_user.jurisdiction_id).order.page(params[:page]).per(5)
@@ -10,7 +11,8 @@ class FormulariesController < ApplicationController
       #@formularios = Formulary.resultados_nacionales
     else
       #@formularios = Formulary.formularios_jurisdiccionales(current_user.jurisdiction_id).order.page(params[:page]).per(5)
-      render partial: 'generic_partial' # renders app/views/products/_product.html.haml
+      #render partial: 'generic_partial' # renders app/views/products/_product.html.haml
+      render 'generic_partial'
     end
     #render partial: 'product' # renders app/views/products/_product.html.haml
   end

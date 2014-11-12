@@ -1,4 +1,4 @@
-<% @current_estado_id = User.select(:efederativa_id).where("id = ?", current_user.id).all%>
+
 <%= form_for @formulary, :validate => true do |f| %>
   <% if @formulary.errors.any? %>
     <div id="error_explanation">
