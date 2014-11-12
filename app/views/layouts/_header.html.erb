@@ -8,10 +8,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Secretaría de Salud - CENAPRECE</a>
+      <a class="navbar-brand" href= <%= root_path %> >Secretaría de Salud - CENAPRECE</a>
+      <ul class="nav pull-right">
+        <% if user_signed_in? %>
+          <li> <%= link_to "Cerrar sesión",destroy_user_session_path, :method => :delete %></li>
+        <% else %>
+          <li><%= link_to "Ingresa", new_user_session_path %></li>
+        <% end %>
+        </ul>
     </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-
   </div><!-- /.container-fluid -->
 </nav>
