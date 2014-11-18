@@ -2,8 +2,9 @@ class FormulariesController < ApplicationController
   load_and_authorize_resource
   def index
     if can? :capture_formulary, @user
-      @formularios = Formulary.jurisdictional_results(current_user.jurisdiction_id).order.page(params[:page]).per(5)
-      render partial: 'index/jurisdictional_results' # renders app/views/formularies/index/_product.html.erb
+      @formularios = Formulary.jurisdictional_results(User.users_from_jurisdiction(current_user.jurisdiction_id))
+      flash[:notice] = "Post successfully created" if @formularios.empty?
+      render 'jurisdictional_results' # renders app/views/formularies/index/_product.html.erb
     elsif can? :view_state_results, @user
       @formularios = Formulario.resultados_estatales(current_user.jurisdiction_id)
       render partial: 'state_results'
@@ -21,6 +22,7 @@ class FormulariesController < ApplicationController
   end
 
   def new
+    flash[:notice] = "Bienvenido"
     @formulary = Formulary.new
     respond_to do |format|
       format.html # new.html.erb

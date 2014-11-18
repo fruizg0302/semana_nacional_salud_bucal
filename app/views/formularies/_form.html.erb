@@ -23,36 +23,7 @@
       </div>
 
 
-      <% if can? :fill_federal, @user %>
-          <div class="span4">
-            <div>
-              <p> <label for="estado_id">Entidad federativa</label>
-                <% @current_estado_name = Efederativa.select("id, state_name") %>
-                <%= f.select :efederativa_id, @current_estado_name.collect{ |e| [e.state_name, e.id] }, :tabindex => '4'%>
-              </p>
-            </div>
-          </div>
-
-       <%else %>
-
-      <div class="span4">
-        <div class= "field">
-          <p>Jurisdicción</p>
-          <% @current_jurisdiction_name = Jurisdiction.select("id, jurisdiction").where("efederativa_id = ? AND id = ?", @current_estado_id.map(&:efederativa_id), current_user.jurisdiction_id).all %>
-          <%= f.select :jurisdiction_id, @current_jurisdiction_name.collect{ |m| [m.jurisdiction, m.id] }%>
-          </div>
-        </div>
-
-
-      <div class="span4">
-        <div>
-          <p> <label for="estado_id">Entidad federativa</label>
-            <% @current_estado_name = Efederativa.select("id, state_name").where("id = ?", @current_estado_id.map(&:efederativa_id)).all %>
-            <%= f.select :efederativa_id, @current_estado_name.collect{ |e| [e.state_name, e.id] }, :tabindex => '4'%>
-          </p>
-        </div>
-      </div>
-      <% end %>
+      
 
 
     </div>
