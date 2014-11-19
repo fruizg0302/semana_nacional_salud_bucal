@@ -11,10 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141105023451) do
+ActiveRecord::Schema.define(version: 20141119010943) do
 
   create_table "formularies", force: true do |t|
-    t.string   "nombre_unidad"
     t.string   "responsable_llenado"
     t.date     "fecha"
     t.integer  "cod01"

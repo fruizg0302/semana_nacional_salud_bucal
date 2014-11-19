@@ -34,6 +34,7 @@ class FormulariesController < ApplicationController
   end
 
   def create
+    @formulary = Formulary.create(formulary_params)
   end
 
   def update
@@ -41,4 +42,16 @@ class FormulariesController < ApplicationController
 
   def destroy
   end
+
+  private
+    # Using a private method to encapsulate the permissible parameters is
+    # just a good pattern since you'll be able to reuse the same permit
+    # list between create and update. Also, you can specialize this method
+    # with per-user checking of permissible attributes.
+    def formulary_params
+      allow = [:responsable_llenado,:cod01,:cod02,:ape01,:ape04,:ape07,:ape02,:ape05,:ape03,:ape06,:api01,:api04,:api02,:ssb01,:api03,:cao01,:cao04,:cao07,:cao10,:tit01,:cao02,:cao05,:cao08,:cao11,:cao03,:cao06,:cao09,:cao12,:uni01,:uni02,:uni03,:ben01,:ben02,:per01,:per02,:user_id]
+      params.require(:formulary).permit(allow)
+    end
+
+
 end
