@@ -6,23 +6,27 @@
   </div>
 </div>
 <% else %>
-<table class="table table-striped table-hover">
-  <thead>
-    <tr>
-      <th>Captura por:</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @formularios.each do |formulary| %>
+<div class="row">
+  <table class="table table-striped table-hover">
+    <thead>
       <tr>
-        <td><%= formulary.responsable_llenado %></td>
-        <td><%= link_to 'Detalles', formulary %></td>
-        <td><%= link_to 'Editar', edit_formulary_path(formulary) %></td>
-        <td><%= link_to 'Eliminar', formulary, method: :delete, data: { confirm: '¿Seguro?' } %></td>
+        <th class="col-sm-4">Captura por:</th>
+        <th class="col-sm-1"></th>
+        <th class="col-sm-1"></th>
+        <th class="col-sm-1"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @formularios.each do |formulary| %>
+        <tr>
+          <td><%= formulary.responsable_llenado %></td>
+          <td><%= link_to 'Detalles', formulary %></td>
+          <td><%= link_to 'Editar', edit_formulary_path(formulary) %></td>
+          <td><%= link_to 'Eliminar', formulary, method: :delete, data: { confirm: '¿Seguro?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 <% end %>
 <%= link_to("Nueva captura", new_formulary_path, nil) %>
