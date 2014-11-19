@@ -1,9 +1,7 @@
-
 <%= form_for @formulary, :validate => true do |f| %>
   <% if @formulary.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@formulary.errors.count, "error") %> prohibited this formulario from being saved:</h2>
-
       <ul>
       <% @formulary.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -11,378 +9,289 @@
       </ul>
     </div>
   <% end %>
-
-
-<div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span4">
-        <div class="field">
-          <p>Responsable de llenado</p>
-          <%= f.text_field :responsable_llenado, :tabindex => '1' %>
-        </div>
-      </div>
-
-
-      
-
-
+<form role="form">
+<div class="row">
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Responsable de llenado</label>
+      <%= f.text_field :responsable_llenado, class: "form-control"%>
     </div>
-
-    <div class="row">
-      <div class="span10">
-        <div class="field">
-          <%= f.label "Fecha de captura" %>
-          <%= f.date_select :fecha, {:use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre','Diciembre']}%>
-        </div>
-      </div>
-    </div>
- </div>
-
-    <div class="alert alert-info">
-      <strong>Consultas odontológicas</strong>
-
-    </div>
-
-
-
-
-    <div class="container-fluid">
-      <div class="row-fluid">
-
-
-        <div class="span4">
-
-          <div class="field">
-            <p>COD01: Primera Vez</p>
-
-            <%= f.number_field :cod01 %>
-          </div>
-
-
-        </div>
-
-        <div class="span4">
-            <div class="field">
-              <p>COD02: Subsecuente</p>
-              <%= f.number_field :cod02, options = {:min => 1} %>
-            </div>
-        </div>
-      </div>
-    </div>
-
-
-
-    <div class="alert alert-info">
-      <strong>Actividades Preventivas:</strong>
-      <p>Intramuros y Extramuros</p>
-    </div>
-
-
-
-
-
-    <div class="container-fluid">
-      <div class="row-fluid">
-
-
-        <div class="span4">
-
-          <div class="field">
-            <p>APE01: Detección de placa bacteriana*</p><br/>
-            <%= f.number_field :ape01 %>
-          </div>
-
-          <div class="field">
-            <p>APE04: Enjuagues de fluoruro de sodios (Autoaplicaciones)*</p>
-            <%= f.number_field :ape04 %>
-          </div>
-
-          <div class="field">
-            <p>APE07: Instrucción de autoexamen de cavidad bucal</p>
-            <%= f.number_field :ape07 %>
-          </div>
-
-        </div>
-
-        <div class="span4">
-          <div class="field">
-            <p>APE02: Instrucción en técnica de cepillado*</p>
-            <%= f.number_field :ape02 %>
-          </div>
-          <div class="field">
-            <p>APE05: Revisión de tejidos bucales*</p>
-            <%= f.number_field :ape05 %>
-          </div>
-        </div>
-
-
-
-        <div class="span4">
-          <div class="field">
-           <p>APE03: Instrucción de uso del hilo dental</p>
-            <%= f.number_field :ape03 %>
-          </div>
-          <div class="field">
-            <p>APE06: Revisión e instrucción de higiene de protésis*</p>
-            <%= f.number_field :ape06 %>
-          </div>
-        </div>
-
-
-
-      </div>
-    </div>
-
-
-    <div class="alert alert-info">
-      <strong>Actividades Preventivas:</strong>
-      <p>Intramuros</p>
-    </div>
-
-
-
-    <div class="container-fluid">
-      <div class="row-fluid">
-
-
-        <div class="span4">
-          <div class="field">
-            <p>API01: Profilaxis </p><br/>
-
-            <%= f.number_field :api01 %>
-          </div>
-          <div class="field">
-            <p>API04: Sellado de fosetas y fisuras </p><br/>
-
-            <%= f.number_field :api04 %>
-          </div>
-
-
-        </div>
-
-        <div class="span4">
-          <div class="field">
-            <p>API02: Odontoxesis </p><br/>
-            <%= f.number_field :api02 %>
-          </div>
-          <div class="field">
-            <p>SSB01: Sesiones sobre Salud Bucal</p><br/>
-            <%= f.number_field :ssb01 %>
-          </div>
-        </div>
-
-
-
-        <div class="span4">
-          <div class="field">
-            <p>API03: Aplicación tópica de fluor</p><br/>
-            <%= f.number_field :api03 %>
-          </div>
-        </div>
-
-
-
-      </div>
-    </div>
-
-    <div class="alert alert-info">
-      <strong>Curativo Asistencial:</strong>
-
-    </div>
-
-
-
-
-    <div class="container-fluid">
-      <div class="row-fluid">
-
-
-        <div class="span4">
-          <div class="field">
-            <p>CAO01: Obturación con Amalgama</p><br/>
-            <%= f.number_field :cao01 %>
-          </div>
-          <div class="field">
-            <p>CAO04: Tratamiento restaurativo atraumático (extramuros)</p><br/>
-            <%= f.number_field :cao04 %>
-          </div>
-          <div class="field">
-            <p>CAO07: Extracciones Permanentes</p><br/>
-            <%= f.number_field :cao07 %>
-          </div>
-          <div class="field">
-            <p>CAO10: Farmacoterapia</p><br/>
-            <%= f.number_field :cao10 %>
-          </div>
-          <div class="field">
-            <p>TIT01: Tratamiento Integral Terminado</p><br/>
-            <%= f.number_field :tit01 %>
-          </div>
-
-
-        </div>
-
-        <div class="span4">
-          <div class="field">
-            <p>CAO02: Obturación con Resina</p><br/>
-            <%= f.number_field :cao02 %>
-          </div>
-          <div class="field">
-            <p>CAO01: Obturación con material temporal</p><br/>
-            <%= f.number_field :cao05 %>
-          </div>
-          <div class="field">
-            <p>CAO08: Terapia Pulpar</p><br/>
-            <%= f.number_field :cao08 %>
-          </div>
-          <div class="field">
-            <p>CAO11: Otras Atenciones</p><br/>
-            <%= f.number_field :cao11 %>
-          </div>
-
-
-        </div>
-
-
-
-        <div class="span4">
-          <div class="field">
-            <p>CAO03: Obturación con ionómetro de vidrio</p><br/>
-            <%= f.number_field :cao03 %>
-          </div>
-          <div class="field">
-            <p>CAO06: Extracciones Temporales</p><br/>
-            <%= f.number_field :cao06 %>
-          </div>
-          <div class="field">
-            <p>CAO09: Cirugía Bucal</p><br/>
-            <%= f.number_field :cao09 %>
-          </div>
-          <div class="field">
-            <p>CAO12: Radiografías</p><br/>
-            <%= f.number_field :cao12 %>
-          </div>
-
-        </div>
-
-
-
-      </div>
-    </div>
-
-
-    <div class="alert alert-info">
-      <strong>Universo:</strong>
-
-    </div>
-
-
-
-    <div class="container-fluid">
-      <div class="row-fluid">
-
-
-        <div class="span4">
-          <div class="field">
-            <p>UNI01: Escuelas</p><br/>
-            <%= f.number_field :uni01 %>
-          </div>
-
-
-        </div>
-
-        <div class="span4">
-          <div class="field">
-           <p>UNI02: Unidades de salud</p><br/>
-            <%= f.number_field :uni02 %>
-          </div>
-        </div>
-
-
-
-        <div class="span4">
-          <div class="field">
-            <p>UNI03: Otros(ferias de salud, plazas, mercados, etc.)</p><br/>
-            <%= f.number_field :uni03 %>
-          </div>
-        </div>
-
-
-
-      </div>
-    </div>
-
-
-    <div class="alert alert-info">
-      <strong>Beneficiados:</strong>
-    </div>
-
-    <div class="container-fluid">
-      <div class="row-fluid">
-
-
-        <div class="span4">
-          <div class="field">
-            <p>BEN01: Menores de 20 años</p><br/>
-            <%= f.number_field :ben01 %>
-          </div>
-
-        </div>
-
-        <div class="span4">
-          <div class="field">
-            <p>BEN02: 20 años ó más</p><br/>
-            <%= f.number_field :ben02 %>
-          </div>
-        </div>
-
-
-
-
-      </div>
-    </div>
-
-    <div class="alert alert-info">
-      <strong>Personal Participante:</strong>
-    </div>
-
-    <div class="container-fluid">
-      <div class="row-fluid">
-
-
-        <div class="span4">
-          <div class="field">
-            <p>PER01: Personal de salud</p><br/>
-            <%= f.number_field :per01 %>
-          </div>
-
-        </div>
-
-
-        <div class="span4">
-          <div class="field">
-            <p>PER02: Otros</p><br/>
-            <%= f.number_field :per02 %>
-          </div>
-        </div>
-
-
-        <div class="span4">
-          <div class="field">
-            <p>ID de Usuario</p><br/>
-
-
-            <%  @estado_id = User.select(:efederativa_id).where("id = ?", current_user.id).all%>
-            <%= f.number_field :user_id, :value => current_user.id, :readonly => true  %>
-
-          </div>
-        </div>
-
-
-      </div>
-    </div>
-
-  <div class="actions">
-    <%= f.submit "Guardar", :confirmation => true %>
   </div>
+  <div class="col-md-1"></div>
+</div>
+
+  <div class="row">
+    <div class="alert alert-info col-md-10">
+      <strong>Consultas odontológicas</strong>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>COD01: Primera Vez</label>
+        <%= f.number_field :cod01, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2">
+        <div class="form-group">
+          <label>COD02: Subsecuente</label>
+          <%= f.number_field :cod02, options = {min: 1, class: "form-control"} %>
+        </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10 alert alert-info">
+      <p>
+        <strong>Actividades Preventivas:</strong> Intramuros y extramuros
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>APE01: Detección de placa bacteriana*</label>
+        <%= f.number_field :ape01, options = {min: 1, class: "form-control"} %>
+      </div>
+
+      <div class="form-group">
+        <label>APE04: Enjuagues de fluoruro de sodios (Autoaplicaciones)*</label>
+        <%= f.number_field :ape04, options = {min: 1, class: "form-control"} %>
+      </div>
+
+      <div class="form-group">
+        <label>APE07: Instrucción de autoexamen de cavidad bucal </label>
+        <%= f.number_field :ape07, options = {min: 1, class: "form-control"} %>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>APE02: Instrucción en técnica de cepillado*</label>
+        <%= f.number_field :ape02, options = {class: "form-control"} %>
+      </div>
+      <div class="form-group">
+        <label>APE05: Revisión de tejidos bucales*</label>
+        <%= f.number_field :ape05, options = {class: "form-control"} %>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2">
+      <div class="form-group">
+       <label>APE03: Instrucción de uso del hilo dental </label>
+        <%= f.number_field :ape03, options = {class: "form-control"} %>
+      </div>
+      <div class="form-group">
+        <label>APE06: Revisión e instrucción de higiene de protésis*</label>
+        <%= f.number_field :ape06, options = {class: "form-control"} %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10 alert alert-info">
+      <p>
+        <strong>Actividades Preventivas:</strong> Intramuros
+      </p>
+    </div>
+  </div>
+
+<div class="row">
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>API01: Profilaxis</label>
+      <%= f.number_field :api01, options = {class: "form-control"} %>
+    </div>
+    <div class="form-group">
+      <label>API04: Sellado de fosetas y fisuras </label>
+      <%= f.number_field :api04, options = {class: "form-control"} %>
+    </div>
+  </div>
+  <div class="col-md-2"></div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>API02: Odontoxesis </label>
+      <%= f.number_field :api02 , options = {class: "form-control"}%>
+    </div>
+    <div class="form-group">
+      <label>SSB01: Sesiones sobre Salud Bucal</label>
+      <%= f.number_field :ssb01 , options = {class: "form-control"}%>
+    </div>
+  </div>
+  <div class="col-md-2"></div>
+  <div class="col-md-2">
+    <div class="form-group">
+     <label>API03: Aplicación tópica de fluor</label>
+      <%= f.number_field :api03, options = {class: "form-control"} %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-10 alert alert-info">
+    <p>
+      <strong>Curativo asistencial</strong>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>CAO01: Obturación con Amalgama</label>
+      <%= f.number_field :cao01, options = {class: "form-control"} %>
+    </div>
+    <div class="form-group">
+      <label>CAO04: Tratamiento restaurativo atraumático (extramuros)</label>
+      <%= f.number_field :cao04, options = {class: "form-control"} %>
+    </div>
+    <div class="form-group">
+      <label>CAO07: Extracciones Permanentes</label>
+      <%= f.number_field :cao07 , options = {class: "form-control"}%>
+    </div>
+    <div class="form-group">
+      <label>CAO10: Farmacoterapia</label>
+      <%= f.number_field :cao10, options = {class: "form-control"} %>
+    </div>
+    <div class="form-group">
+      <label>TIT01: Tratamiento Integral Terminado</label>
+      <%= f.number_field :tit01 , options = {class: "form-control"}%>
+    </div>
+  </div>
+  <div class="col-md-2"></div>
+
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>CAO02: Obturación con Resina</label>
+      <%= f.number_field :cao02, options = {class: "form-control"} %>
+    </div>
+    <div class="form-group">
+      <label>CAO05: Obturación con material temporal</label>
+      <%= f.number_field :cao05, options = {class: "form-control"} %>
+    </div>
+    <div class="form-group">
+      <label>CAO08: Terapia Pulpar</label>
+      <%= f.number_field :cao08 , options = {class: "form-control"}%>
+    </div>
+    <div class="form-group">
+      <label>CAO11: Otras Atenciones</label>
+      <%= f.number_field :cao11 , options = {class: "form-control"}%>
+    </div>
+  </div>
+
+  <div class="col-md-2"></div>
+
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>CAO03: Obturación con ionómetro de vidrio</label>
+      <%= f.number_field :cao03, options = {class: "form-control"} %>
+    </div>
+    <div class="form-group">
+      <label>CAO06: Extracciones Temporales</label>
+      <%= f.number_field :cao06, options = {class: "form-control"} %>
+    </div>
+    <div class="form-group">
+      <label>CAO09: Cirugía Bucal</label>
+      <%= f.number_field :cao09 , options = {class: "form-control"}%>
+    </div>
+    <div class="form-group">
+      <label>CAO12: Radiografías</label>
+      <%= f.number_field :cao12 , options = {class: "form-control"}%>
+    </div>
+  </div>
+</div>
+
+  <div class="row">
+    <div class="col-md-10 alert alert-info">
+      <p>
+        <strong>Universo</strong>
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>UNI01: Escuelas</label>
+        <%= f.number_field :uni01, options = {class: "form-control"} %>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2">
+      <div class="form-group">
+       <label>UNI02: Unidades de salud</label>
+        <%= f.number_field :uni02 , options = {class: "form-control"}%>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>UNI03: Otros(ferias de salud, plazas, mercados, etc.)</label>
+        <%= f.number_field :uni03 , options = {class: "form-control"}%>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10 alert alert-info">
+      <p>
+        <strong>Beneficiados</strong>
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>BEN01: Menores de 20 años</label>
+        <%= f.number_field :ben01, options = {class: "form-control"} %>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>BEN02: 20 años ó más</label>
+        <%= f.number_field :ben02, options = {class: "form-control"} %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10 alert alert-info">
+      <p>
+        <strong>Personal participante</strong>
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>PER01: Personal de salud</label>
+        <%= f.number_field :per01 %>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>PER02: Otros</label>
+        <%= f.number_field :per02 %>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2">
+      <div class="form-group">
+        <%= f.hidden_field :user_id, :value => current_user.id, :readonly => true  %>
+      </div>
+    </div>
+  </div>
+<div class="actions">
+  <%= f.submit "Guardar", :confirmation => true %>
+</div>
+
+</form>
 <% end %>
