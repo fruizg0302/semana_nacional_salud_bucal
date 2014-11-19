@@ -3,10 +3,10 @@ class FormulariesController < ApplicationController
   def index
     if can? :capture_formulary, @user
       @formularios = Formulary.jurisdictional_results(User.users_from_jurisdiction(current_user.jurisdiction_id))
-      flash[:notice] = "Post successfully created" if @formularios.empty?
+      flash[:notice] = "Tu jurisdicción no tiene metas aún" if @formularios.empty?
       render 'jurisdictional_results' # renders app/views/formularies/index/_product.html.erb
     elsif can? :view_state_results, @user
-      @formularios = Formulario.resultados_estatales(current_user.jurisdiction_id)
+      @formularios = Formulary.resultados_estatales(current_user.jurisdiction_id)
       render partial: 'state_results'
     elsif can? :view_national_results, @user
       #@formularios = Formulary.resultados_nacionales
@@ -22,7 +22,6 @@ class FormulariesController < ApplicationController
   end
 
   def new
-    flash[:notice] = "Bienvenido"
     @formulary = Formulary.new
     respond_to do |format|
       format.html # new.html.erb
@@ -34,11 +33,28 @@ class FormulariesController < ApplicationController
   end
 
   def create
-    @formulary = Formulary.create(formulary_params)
+  if  @formulary = Formulary.create(formulary_params)
+    respond_to do |format|
+      format.html {redirect_to root_path}
+    end
+  else
+    format.html { render :new }
+  end
   end
 
   def update
+    respond_to do |format|
+      if @formulary.update(formulary_params)
+        format.html { redirect_to @formulary, notice: 'Tu registro se ha actualizado.' }
+        format.json { render :show, status: :ok, location: @formulary }
+      else
+        format.html { render :edit }
+        format.json { render json: @formulary.errors, status: :unprocessable_entity }
+      end
+    end
   end
+
+
 
   def destroy
   end

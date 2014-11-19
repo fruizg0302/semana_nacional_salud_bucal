@@ -8,5 +8,4 @@ class Formulary < ActiveRecord::Base
   def self.resultados_estatales (efederativa_id)
   end
 
-
 end
