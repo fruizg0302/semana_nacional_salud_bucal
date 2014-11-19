@@ -57,6 +57,11 @@ class FormulariesController < ApplicationController
 
 
   def destroy
+    @formulary.destroy
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: 'Registro eliminado.' }
+      format.json { head :no_content }
+    end
   end
 
   private

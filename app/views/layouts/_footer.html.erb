@@ -4,7 +4,7 @@
         <div class="col-lg-12">
             <ul class="nav nav-pills nav-justified">
               <% if user_signed_in? %>
-                <li><a href="/">Hola <%= current_user.email %>.</a></li>
+                <li><a href="/">Hola <%= current_user.email %></a></li>
               <% else %>
                 <li><a href="#">Accede</a></li>
               <% end %>
