@@ -1,0 +1,32 @@
+<h2>Resultados</h2>
+<% if @formularios.empty? %>
+<div class="row">
+  <div class="alert alert-info col-md-10">
+    <strong>No se ha capturado ninguna meta.</strong>
+  </div>
+</div>
+<% else %>
+<div class="row">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th class="col-sm-4">Captura por:</th>
+        <th class="col-sm-1"></th>
+        <th class="col-sm-1"></th>
+        <th class="col-sm-1"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @formularios.each do |formulary| %>
+        <tr>
+          <td><%= formulary.responsable_llenado %></td>
+          <td><%= link_to 'Detalles', formulary %></td>
+          <td><%= link_to 'Editar', edit_formulary_path(formulary) %></td>
+          <td><%= link_to 'Eliminar', formulary, method: :delete, data: { confirm: '¿Seguro?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<% end %>
+<%= link_to("Nueva captura", new_formulary_path, nil) %>

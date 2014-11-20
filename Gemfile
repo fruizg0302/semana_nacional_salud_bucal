@@ -17,6 +17,7 @@ gem 'devise', '~> 3.4.1'
 gem 'cancan', '~> 1.6.10'
 gem 'to_xls', '~> 1.5.3'
 gem 'rolify', '~> 3.4.1'
+gem 'unicorn', '~> 4.8.3'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

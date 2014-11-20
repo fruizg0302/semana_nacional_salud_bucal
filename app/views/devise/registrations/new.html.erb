@@ -16,7 +16,7 @@
   </div>
 
   <div><%= f.label "Entidad Federativa" %><br />
-    <%= f.collection_select :id,  State.order(:state_name), :id, :state_name, include_blank:true%>
+    <%= f.collection_select :id,  State.order(:id), :id, :state_name, include_blank:true%>
   </div>
 
   <div><%= f.label "Jurisdicción sanitaria" %><br />

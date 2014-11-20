@@ -6,7 +6,7 @@ class FormulariesController < ApplicationController
       flash[:notice] = "Tu jurisdicción no tiene metas aún" if @formularios.empty?
       render 'jurisdictional_results' # renders app/views/formularies/index/_product.html.erb
     elsif can? :view_state_results, @user
-      @formularios = Formulary.resultados_estatales(current_user.jurisdiction_id)
+      @formularios = Formulary.resultados_estatales(User.users_from_jurisdiction(current_user.jurisdiction_id))
       render partial: 'state_results'
     elsif can? :view_national_results, @user
       #@formularios = Formulary.resultados_nacionales
@@ -57,6 +57,11 @@ class FormulariesController < ApplicationController
 
 
   def destroy
+    @formulary.destroy
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: 'Registro eliminado.' }
+      format.json { head :no_content }
+    end
   end
 
   private
@@ -68,6 +73,4 @@ class FormulariesController < ApplicationController
       allow = [:responsable_llenado,:cod01,:cod02,:ape01,:ape04,:ape07,:ape02,:ape05,:ape03,:ape06,:api01,:api04,:api02,:ssb01,:api03,:cao01,:cao04,:cao07,:cao10,:tit01,:cao02,:cao05,:cao08,:cao11,:cao03,:cao06,:cao09,:cao12,:uni01,:uni02,:uni03,:ben01,:ben02,:per01,:per02,:user_id]
       params.require(:formulary).permit(allow)
     end
-
-
 end
