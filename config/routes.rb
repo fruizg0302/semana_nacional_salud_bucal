@@ -10,9 +10,8 @@ Rails.application.routes.draw do
   end
 
   devise_scope :user do
-  get "/login" => "devise/sessions#new"
-  delete "/logout" => "devise/sessions#destroy"
-end
-
+    get "/login" => "devise/sessions#new"
+    delete "/logout" => "devise/sessions#destroy"
+  end
 
 end
