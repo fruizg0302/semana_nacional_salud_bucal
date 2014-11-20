@@ -6,7 +6,7 @@ class FormulariesController < ApplicationController
       flash[:notice] = "Tu jurisdicción no tiene metas aún" if @formularios.empty?
       render 'jurisdictional_results' # renders app/views/formularies/index/_product.html.erb
     elsif can? :view_state_results, @user
-      @formularios = Formulary.resultados_estatales(User.users_from_jurisdiction(current_user.jurisdiction_id))
+      @formularios = Formulary.state_results(current_user.jurisdiction.state)
       render 'state_results'
     elsif can? :view_national_results, @user
       #@formularios = Formulary.resultados_nacionales
