@@ -4,7 +4,7 @@ class Formulary < ActiveRecord::Base
   def self.jurisdictional_results (*args)
     self.where(user_id: args)
   end
-  #Metodo comentado
+
   def self.state_results (state)
     self.find_by_sql("select * from formularies as f inner join users as s on s.id = f.user_id inner join jurisdictions as j on j.id = s.jurisdiction_id inner join states as st on j.state_id = st.id where st.id= #{state.id}")
   end
