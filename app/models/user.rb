@@ -9,10 +9,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :timeoutable, :timeout_in => 15.minutes
 
   def self.users_from_jurisdiction(jurisdiction_id)
-    users_ids = []
+    Array.new.tap do |a|
     users = User.select("id").where("jurisdiction_id = ?", jurisdiction_id)
-    users.each {|u| users_ids << u.id }
-    users_ids
+    users.each {|u| a << u.id }
+    end
   end
 
   private

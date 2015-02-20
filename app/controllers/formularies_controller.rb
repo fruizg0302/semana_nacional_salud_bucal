@@ -3,8 +3,7 @@ class FormulariesController < ApplicationController
   def index
     if can? :capture_formulary, @user
       @formularios = Formulary.jurisdictional_results(User.users_from_jurisdiction(current_user.jurisdiction_id))
-      flash[:notice] = "Tu jurisdicción no tiene metas aún" if @formularios.empty?
-      render 'jurisdictional_results' # renders app/views/formularies/index/_product.html.erb
+      render 'jurisdictional_results' 
     elsif can? :view_state_results, @user
       @formularios = Formulary.state_results(current_user.jurisdiction.state.id)
       render 'state_results'
